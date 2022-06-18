@@ -1,24 +1,25 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
-import Dashboards from './Dashboards';
-import Components from './Components';
-import Apps from './Apps';
-import Extensions from './Extensions';
-import Charts from './Charts';
-import Maps from './Maps';
-import Widgets from './Widgets';
-import Metrics from './Metrics';
-import Login from './Auth/Login';
-import Signup from './Auth/Register';
-import ForgotPassword from './Auth/ForgotPassword';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import ExtraPages from './ExtraPages';
-import TourGuide from './TourGuide';
-import CustomTimelines from './views/CustomTimelines';
-import MaterialTimelines from './views/MaterialTimelines';
-import Calendar from './modules/Calendar';
-import UsersModule from './modules/Users';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router";
+import Dashboards from "./Dashboards";
+import Components from "./Components";
+import Apps from "./Apps";
+import Extensions from "./Extensions";
+import Charts from "./Charts";
+import Maps from "./Maps";
+import Widgets from "./Widgets";
+import Metrics from "./Metrics";
+import Login from "./Auth/Login";
+import Signup from "./Auth/Register";
+import ForgotPassword from "./Auth/ForgotPassword";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import ExtraPages from "./ExtraPages";
+import TourGuide from "./TourGuide";
+import CustomTimelines from "./views/CustomTimelines";
+import MaterialTimelines from "./views/MaterialTimelines";
+import Calendar from "./modules/Calendar";
+import UsersModule from "./modules/Users";
+import Fin from "./Fin";
 // import LayoutBuilder from './LayoutBuilder';
 
 const RestrictedRoute = ({ component: Component, ...rest }) => {
@@ -26,13 +27,13 @@ const RestrictedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         authUser ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: '/signin',
+              pathname: "/signin",
               state: { from: props.location },
             }}
           />
@@ -46,10 +47,10 @@ const Routes = () => {
   const { authUser } = useSelector(({ auth }) => auth);
   const location = useLocation();
 
-  if (location.pathname === '' || location.pathname === '/') {
-    return <Redirect to={'/dashboard'} />;
-  } else if (authUser && location.pathname === '/signin') {
-    return <Redirect to={'/dashboard'} />;
+  if (location.pathname === "" || location.pathname === "/") {
+    return <Redirect to={"/dashboard"} />;
+  } else if (authUser && location.pathname === "/signin") {
+    return <Redirect to={"/dashboard"} />;
   }
 
   return (
@@ -72,11 +73,12 @@ const Routes = () => {
         <Route path="/signup" component={Signup} />
         <Route path="/forgot-password" component={ForgotPassword} />
         {/*<Route path="/layout-builder" component={LayoutBuilder} />*/}
+        <Route path="/fin" component={Fin} />
       </Switch>
 
-      {location.pathname !== '/signin' && location.pathname !== '/signup' && location.pathname !== '/forgot-password' && (
-        <TourGuide />
-      )}
+      {location.pathname !== "/signin" &&
+        location.pathname !== "/signup" &&
+        location.pathname !== "/forgot-password" && <TourGuide />}
     </React.Fragment>
   );
 };

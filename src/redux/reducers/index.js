@@ -1,18 +1,19 @@
-import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 
-import Common from './Common';
-import Dashboard from './Dashboard';
-import TaskList from './TaskList';
-import MailApp from './MailApp';
-import Chat from './Chat';
-import ContactApp from './ContactApp';
-import ProfileApp from './ProfileApp';
-import WallApp from './WallApp';
-import Auth from './Auth';
-import Users from './Users';
+import Common from "./Common";
+import Dashboard from "./Dashboard";
+import TaskList from "./TaskList";
+import MailApp from "./MailApp";
+import Chat from "./Chat";
+import ContactApp from "./ContactApp";
+import ProfileApp from "./ProfileApp";
+import WallApp from "./WallApp";
+import Auth from "./Auth";
+import Users from "./Users";
+import Fin from "./Fin";
 
-export default history =>
+export default (history) =>
   combineReducers({
     router: connectRouter(history),
     common: Common,
@@ -25,4 +26,5 @@ export default history =>
     profileApp: ProfileApp,
     wallApp: WallApp,
     usersReducer: Users,
+    finReducer: Fin,
   });

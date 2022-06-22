@@ -1,11 +1,14 @@
 import { Box, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TransactionForm from "components/Transaction/TransactionForm";
 import TransactionItem from "components/Transaction/TransactionItem";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategories } from "redux/thunks/fin/categories.thunks";
 
 const Fin = () => {
+  const dispatch = useDispatch();
+
   const dates = [
     moment(),
     moment().subtract(1, "days"),
@@ -17,6 +20,8 @@ const Fin = () => {
   const onSubmit = () => {};
 
   const { transactions } = useSelector((state) => state.finReducer);
+
+  getAllCategories(dispatch);
 
   const total = (transactions) => {
     if (transactions)

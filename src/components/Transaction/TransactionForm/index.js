@@ -8,18 +8,13 @@ import {
 import React from "react";
 import { useState } from "react";
 import { Field, Form } from "react-final-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createTransaction } from "redux/actions/Fin";
 
 const TransactionForm = ({ onSubmit, date }) => {
   const dispatch = useDispatch();
 
-  const categories = [
-    { id: 1, name: "Cat1" },
-    { id: 2, name: "Cat2" },
-    { id: 3, name: "Cat3" },
-    { id: 4, name: "Cat4" },
-  ];
+  const { categories } = useSelector((state) => state.finReducer);
 
   const defaultTransaction = {
     amount: "",
@@ -86,11 +81,12 @@ const TransactionForm = ({ onSubmit, date }) => {
                   <MenuItem value="">
                     <em>Choose a category</em>
                   </MenuItem>
-                  {categories.map((category, index) => (
-                    <MenuItem key={index} value={category.id}>
-                      {category.name}
-                    </MenuItem>
-                  ))}
+                  {categories?.length &&
+                    categories.map((category, index) => (
+                      <MenuItem key={index} value={category.id}>
+                        {category.name}
+                      </MenuItem>
+                    ))}
                 </TextField>
               )}
             </Field>

@@ -83,5 +83,9 @@ export const EDIT_USER = "EDIT_USER";
 export const DELETE_USER = "DELETE_USER";
 export const DELETE_BULK_USERS = "DELETE_BULK_USERS";
 
-// Fin
+/* FIN */
+// transactions
 export const CREATE_TRANSACTION = "create_transaction";
+
+// categories
+export const GET_ALL_CATEGORIES = "get_all_categoies";
